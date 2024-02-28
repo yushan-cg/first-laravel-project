@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
+Route::get('/', [PagesController::class, 'index']);
+Route::get('/about', [PagesController::class, 'about']);
 
 Route::get('/hello', function () {
     return '<h1>Hello World~</h1>';
 });
+
+/*use post when submitting via form
+Route::post('/hello', function () {
+    return '<h1>Hello World~</h1>';
+});*/
+
+/*Route::get('/about', function () {
+    return view('pages.about');
+});
+
+Route::get('/users/{id}', function ($id) {
+    return 'This is a user ' . $id;
+});
+*/
