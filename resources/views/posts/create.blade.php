@@ -12,6 +12,5 @@
     {{Form::textarea('body', '', ['class' => 'form-control', 'placeholder' => 'Body'])}}
   </div><br>
     {{Form::submit('Click Me Submit!', ['class' => 'btn btn-primary'])}}
-  {!! Form::close() !!}
-  <br><br><a href="/posts" class="btn btn-default">Save</a>
+    {!! Form::close() !!}
 @endsection
