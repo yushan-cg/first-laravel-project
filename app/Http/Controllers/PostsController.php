@@ -66,6 +66,12 @@ class PostsController extends Controller
             // store the image
             $path = $request->file('cover_image')->storeAs('public/cover_images', $filenameToStore);
 
+            /**
+             * php artisan storage:link
+             * [C:\wamp64\www\myproject\public\storage] link has been connected to [C:\wamp64\www\myproject\storage\app/public].
+             * after linking, the changes in storage\app\public will be synced to public\storage
+             */
+
         }else{
             $filenameToStore = 'noimage.jpeg';
         }
