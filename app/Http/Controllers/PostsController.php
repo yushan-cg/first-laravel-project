@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile\getClientOriginalName;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
 use DB;
 
@@ -73,7 +74,7 @@ class PostsController extends Controller
              */
 
         }else{
-            $filenameToStore = 'noimage.jpeg';
+            $filenameToStore = 'noimage.jpg';
         }
 
         $post = new Post;
@@ -153,6 +154,15 @@ class PostsController extends Controller
     public function destroy(string $id)
     {
         $post = Post::find($id);
+
+        if(auth()->user()->id !== $post->user_id){
+            return redirect('/posts')->with('error', 'Unauthorized page.');
+        }
+
+        if($post->cover_image != 'noimage.jpg'){
+            Storage::delete('public/cover_images/'.$post->cover_image);
+        }
+
         $post->delete();
         return redirect('/posts')->with('success', "$post->title removed.");
     }
